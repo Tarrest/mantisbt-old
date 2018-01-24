@@ -4,11 +4,13 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.firefox.FirefoxDriver;
 import org.openqa.selenium.remote.BrowserType;
+import org.openqa.selenium.remote.HttpSessionId;
 
 import java.io.File;
 import java.io.FileReader;
 import java.io.IOException;
 import java.util.Properties;
+import java.util.concurrent.TimeUnit;
 
 public class ApplicationManager {
 
@@ -32,10 +34,18 @@ public class ApplicationManager {
             System.setProperty("webdriver.chrome.driver", "c:\\Tools\\chromedriver.exe");
             driver = new ChromeDriver();
         }
-        //driver.manage().timeouts().implicitlyWait(60, TimeUnit.SECONDS);
+        driver.manage().timeouts().implicitlyWait(0, TimeUnit.SECONDS);
         driver.get(properties.getProperty("web.baseUrl"));
     }
     public void stop() {
         driver.quit();
+    }
+
+    public HttpSession newSession() {
+        return new HttpSession(this);
+    }
+
+    public  String getProperty(String key) {
+        return properties.getProperty(key);
     }
 }
