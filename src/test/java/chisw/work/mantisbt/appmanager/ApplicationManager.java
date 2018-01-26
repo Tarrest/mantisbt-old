@@ -19,6 +19,7 @@ public class ApplicationManager {
     private String browser;
     private RegistrationHelper registrationHelper;
     private FtpHelper ftp;
+    private MailHelper mailHelper;
 
     public ApplicationManager(String browser) {
         this.browser = browser;
@@ -58,7 +59,7 @@ public class ApplicationManager {
         return ftp;
     }
 
-    public WebDriver getDriver() {
+    public WebDriver getWebDriver() {
         if (driver == null) {
             if (browser.equals(BrowserType.FIREFOX)) {
                 System.setProperty("webdriver.gecko.driver", "c:\\Tools\\geckodriver.exe"); //папку с драйверами добавил в path
@@ -72,4 +73,12 @@ public class ApplicationManager {
         }
         return driver;
     }
+
+    public MailHelper mail() {
+    if (mailHelper == null) {
+        mailHelper = new MailHelper(this);
+        }
+        return mailHelper;
+    }
+
 }
