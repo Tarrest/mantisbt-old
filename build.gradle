@@ -16,20 +16,5 @@ dependencies {
     compile group: 'commons-net', name: 'commons-net', version: '3.6'
     compile 'org.subethamail:subethasmtp:3.1.7'
     compile 'ru.lanwen.verbalregex:java-verbal-expressions:1.5'
-
-}
-
-test {
-    useTestNG() {
-        suites 'src/test/resources/testng-groups.xml'
-    }
-    if (project.hasProperty('browser')){
-        systemProperty 'browser', "${browser}"
-    }
-    if (project.hasProperty('target')) {
-        systemProperty 'target', "${target}"
-    }
-    if (project.hasProperty('verifyUI')) {
-        systemProperty 'verifyUI', "${verifyUI}"
-    }
+    compile group: 'biz.futureware.mantis', name: 'mantis-axis-soap-client', version: '1.2.19'
 }
